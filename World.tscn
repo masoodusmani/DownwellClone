@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World.gd" type="Script" id=5]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 5 )
+Mob = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_top = -199.0
+margin_right = 479.0
+margin_bottom = 521.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.921569, 0.921569, 0.827451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+cell_tile_origin = 2
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -458752, 1610612736, 0, -458738, 0, 0, -393216, 1610612736, 0, -393202, 0, 0, -327680, 1610612736, 0, -327666, 0, 0, -262144, 1610612736, 0, -262130, 0, 0, -196608, 1610612736, 0, -196594, 0, 0, -131072, 1610612736, 0, -131058, 0, 0, -65536, 1610612736, 0, -65522, 0, 0, 0, 1610612736, 0, 14, 0, 0, 65536, 1610612736, 0, 65550, 0, 0, 131072, 1610612736, 0, 131086, 0, 0, 196608, 1610612736, 0, 196622, 0, 0, 262144, 1610612736, 0, 262158, 0, 0, 327680, 1610612736, 0, 327694, 0, 0, 393216, 1610612736, 0, 393230, 0, 0, 458752, 1610612736, 0, 458766, 0, 0, 524288, 1610612736, 0, 524302, 0, 0, 589824, 1610612736, 0, 589838, 0, 0, 655360, 1610612736, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655374, 0, 0, 720896, 1610612736, 0, 720910, 0, 0, 786432, 1610612736, 0, 786446, 0, 0, 851968, 1610612736, 0, 851982, 0, 0, 917504, 1610612736, 0, 917518, 0, 0, 983040, 1610612736, 0, 983054, 0, 0, 1048576, 1610612736, 0, 1048590, 0, 0, 1114112, 1610612736, 0, 1114118, 1, 0, 1114119, 1, 0, 1114120, 1, 0, 1114121, 1, 0, 1114122, 1, 0, 1114126, 0, 0, 1179648, 1610612736, 0, 1179662, 0, 0, 1245184, 1610612736, 0, 1245198, 0, 0, 1310720, 1610612736, 0, 1310734, 0, 0, 1376256, 1610612736, 0, 1376270, 0, 0, 1441792, 1610612736, 0, 1441806, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 126.826, 38.432 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( -3.05176e-05, -1.52588e-05 )
+current = true
+limit_left = 0
+limit_top = -200
+limit_right = 480
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 25.0
+
+[node name="Mob" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 126.554, 135.498 )
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="body_entered" from="Mob" to="." method="_on_Mob_body_entered"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]

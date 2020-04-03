@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Hello.gd" type="Script" id=1]
+
+[node name="Panel" type="Panel"]
+anchor_right = 0.307
+anchor_bottom = 0.102
+margin_left = 1.0
+margin_right = -48.368
+margin_bottom = 65.8
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 93.6111
+margin_top = 57.99
+margin_right = 167.611
+margin_bottom = 93.99
+text = "Press me"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 87.4462
+margin_top = 12.0201
+margin_right = 174.446
+margin_bottom = 52.0201
+text = "This is a label"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
